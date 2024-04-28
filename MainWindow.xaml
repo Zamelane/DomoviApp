@@ -1,0 +1,84 @@
+﻿<adonisControls:AdonisWindow x:Class="DomoviApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DomoviApp"
+        xmlns:adonisUi="clr-namespace:AdonisUI;assembly=AdonisUI"
+        xmlns:adonisControls="clr-namespace:AdonisUI.Controls;assembly=AdonisUI"
+        xmlns:adonisExtensions="clr-namespace:AdonisUI.Extensions;assembly=AdonisUI"
+        mc:Ignorable="d"
+        PlaceTitleBarOverContent="True"
+        TitleBarForeground="White"
+        Icon="./Resources/logo.png"
+        adonisExtensions:CursorSpotlightExtension.RelativeSpotlightSize="0.25"
+        Title="Авторизация"
+        Height="450" Width="800"
+        MaxHeight="450" MaxWidth="800"
+        MinHeight="250" MinWidth="500">
+    <adonisControls:AdonisWindow.TitleBarContent>
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Right">
+            <Button Content="?"
+                    Style="{DynamicResource {x:Static adonisUi:Styles.WindowButton}}"
+                    FontFamily="Segoe UI"
+                    FontSize="14"/>
+        </StackPanel>
+    </adonisControls:AdonisWindow.TitleBarContent>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" MaxWidth="200" MinWidth="150"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <GroupBox 
+            adonisExtensions:LayerExtension.IncreaseLayer="True">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <StackPanel 
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+                    <Image Height="96" Width="96" Source="/Resources/hello.png"/>
+                    <TextBlock HorizontalAlignment="Center" FontWeight="Bold" FontSize="16">Здравствуйте!</TextBlock>
+                    <TextBlock HorizontalAlignment="Center"
+                            FontSize="14"
+                            TextWrapping="WrapWithOverflow"
+                            TextAlignment="Center">
+                                Сегодня прекрасная погода, чтобы поработать.
+                    </TextBlock>
+                </StackPanel>
+                <TextBlock Grid.Row="1" HorizontalAlignment="Center">
+                    <Hyperlink>Нужна помощь...</Hyperlink>
+                </TextBlock>
+            </Grid>
+        </GroupBox>
+        <StackPanel 
+            Grid.Column="1"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            Width="200">
+            <Image Height="69" Width="69" Source="/Resources/logo-auth.png" />
+            <TextBlock HorizontalAlignment="Center" FontWeight="Bold" FontSize="16">Вход в профиль</TextBlock>
+            <TextBox
+                adonisExtensions:WatermarkExtension.Watermark="Логин"
+                Margin="0,10,0,0"
+                x:Name="login">
+                <TextBox.Text>
+                    <Binding Path="Login">
+                        <Binding.ValidationRules>
+                            <DataErrorValidationRule />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <PasswordBox
+                adonisExtensions:WatermarkExtension.Watermark="Пароль"
+                Margin="0,10,0,0"
+                x:Name="Password"/>
+            <Button Content="Войти"
+                Margin="0,10,0,0" Click="ButtonAuth_Click"/>
+        </StackPanel>
+    </Grid>
+</adonisControls:AdonisWindow>
